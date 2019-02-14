@@ -6,3 +6,4 @@ Technology used is ...
   - Angular6
   - [Contentful](https://www.contentful.com/)
   - Firebase
+  - (Add to Any Social Media Sharing Widget)[https://www.addtoany.com/]
