@@ -1,0 +1,33 @@
+@import "../../../../assets/styles/tools/mixins";
+@import "../../../../assets/styles/settings/variables";
+@import "../../../../assets/styles/settings/colors";
+
+.article-wrap {
+  max-width: 750px;
+}
+
+.headline {
+  font-size: 2rem;
+}
+
+.article {
+  margin-bottom: $spacer30;
+  padding-bottom: $spacer30;
+
+  .hero-blog-img-wrap {
+    border-bottom: 1px solid #eaeaea;
+    border-top: 1px solid #eaeaea;
+    max-width: 100%;
+    margin: $spacer30 0;
+    text-align: center;
+
+    .hero-blog-img {
+      max-width: 100%;
+      max-height: 350px;
+    }
+  }
+
+  .blog-article-content-wrap {
+    margin: 0 auto;
+  }
+}

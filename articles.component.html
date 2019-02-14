@@ -1,0 +1,84 @@
+<div class="articles-page-wrap">
+  <div class="hero-banner-wrap m-b-2 flex-container align-center-middle position-relative">
+    <div class="opacity-mask">
+    </div>
+    <div class="hero-banner-content-wrap text-center">
+      <h1 class="hero-banner-title headline p-b-3 text-white permanent-marker">
+        Articles and Resources
+      </h1>
+      <p class="title hero-banner-subtitle text-white">Discover our blogs, articles, and resources and learn more how Laazy can save you
+        time
+        while making your more productive.</p>
+    </div>
+  </div>
+  <div class="container articles-wrap">
+    <div class="row">
+      <h1 class="title m-b-2 col-xs-12">Latest Articles</h1>
+    </div>
+    <div class="article-cards-wrap">
+      <div class="article-card">
+        <div class="subscribe-container laazy-gradient-bg p-a-2 card-shadow">
+          <h2 class="text-white title m-b-1">Subscribe to our updates!</h2>
+          <p class="text-white m-b-2">For occasional newletters, announcements, and updates to your inbox.</p>
+          <div class="alert validation-message-wrap alert-danger"
+               *ngIf="alerts"
+               ngClass="{
+                'alert-danger': serverError,
+                'alert-success': !serverError
+               }">
+            <p *ngIf="serverError">{{serverError}}</p>
+            <p *ngIf="successText" class="text-grey-medium flex-container align-center-middle">
+              <mat-icon>check</mat-icon> <span class="p-l-1">{{successText}}</span>
+            </p>
+          </div>
+          <form #subscribeForm="ngForm" novalidate
+                class="hero-cta-form-wrap"
+                (ngSubmit)="onSubscribeSubmit(subscribeForm)"
+                *ngIf="!formSubmitted">
+            <div class="form-group">
+              <mat-form-field floatPlaceholder="never">
+                <mat-label></mat-label>
+                <input type="text"
+                       name="subscriptionEmailInput"
+                       matInput
+                       [placeholder]="'Your email'"
+                       [pattern]="emailRegEx"
+                       id="subscriptionEmailInput"
+                       [(ngModel)]="subscriptionEmail"
+                       #subscriptionEmailInput="ngModel">
+                <button type="submit"
+                        mat-button
+                        matSuffix
+                        mat-raised-button
+                        color="primary"
+                        id="subscribeBtn"
+                        class="cta-btn">
+                  Get Updates
+                </button>
+              </mat-form-field>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="article-card" *ngFor="let article of blogArticles; let i of index">
+        <mat-card>
+          <img src="{{article.fields.heroImage.fields.file.url}}"
+               mat-card-image
+               alt="{{article.fields.heroImage.fields.description}}">
+          <mat-card-subtitle>{{article.fields.publishDate | date: 'longDate'}}</mat-card-subtitle>
+          <mat-card-title>{{article.fields.title}}</mat-card-title>
+          <mat-card-content>
+            <div class="blog-article-content m-b-2" [innerHtml]="article.fields.description">
+            </div>
+            <button mat-raised-button
+                    type="button"
+                    color="primary"
+                    [routerLink]="['/', 'article', article.fields.slug]"
+                    id="'readMoreBtn_'{{i}}">Read More</button>
+          </mat-card-content>
+        </mat-card>
+
+      </div>
+    </div>
+  </div>
+</div>

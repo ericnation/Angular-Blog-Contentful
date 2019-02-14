@@ -1,0 +1,31 @@
+<div class="p-t-3">
+  <div class="article" *ngIf="article">
+    <div class="container article-wrap">
+      <div class="row">
+        <a [routerLink]="['/', 'resources', 'articles']"
+           class="col-xs-12 flex-container align-middle">
+          <i class="material-icons p-r-1">arrow_back</i>
+          <span>Back to Articles</span></a>
+      </div>
+    </div>
+
+    <div class="hero-blog-img-wrap">
+      <img class="hero-blog-img"
+           title="{{article.fields?.heroImage?.fields.description}}"
+           src="{{article.fields?.heroImage?.fields?.file.url}}" />
+    </div>
+    <div class="container">
+      <div class="row blog-article-content-wrap blog-article-content article-wrap">
+        <div class="col-xs-12">
+          <p class="text-grey-medium m-b-2">{{article?.fields?.publishDate | date: 'longDate'}}</p>
+          <h2 class="headline m-b-3">{{article?.fields?.title}}</h2>
+          <div class="blog-article-content" [innerHtml]="article.fields.body"></div>
+          <social-sharing-widget [articleTitle]="article?.fields?.title"
+                                 [articleSlug]="article?.fields?.slug">
+          </social-sharing-widget>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
